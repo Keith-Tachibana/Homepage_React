@@ -1,0 +1,149 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+header {
+  position: relative;
+  background-color: black;
+  height: 25vh;
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+header iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 1000;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+header .container {
+  position: relative;
+  z-index: 2;
+}
+
+header .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
+}
+
+.carousel-headlines {
+  display: flex;
+  text-align: center;
+  width: calc(45% - 50px);
+  grid-column-start: 1;
+  grid-column-end: span col4-start;
+  grid-row: 1 / row4-start;
+  max-height: 800px;
+  min-height: 800px;
+}
+
+.carousel-sports {
+  display: flex;
+  text-align: center;
+  width: calc(80% - 50px);
+  grid-column: 6 / last-line;
+  justify-self: end;
+  grid-row: 1 / row4-start;
+  max-height: 800px;
+  min-height: 800px;
+}
+
+.previous {
+  position: relative;
+  right: 49%;
+  top: 5px;
+  -ms-transform: translateX(-50%) translateY(-25%);
+  -moz-transform: translateX(-50%) translateY(-25%);
+  -webkit-transform: translateX(-50%) translateY(-25%);
+  transform: translateX(-50%) translateY(-25%);
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.dot {
+  font-size: 1rem;
+  cursor: pointer;
+  position: relative;
+  left: 50%;
+  bottom: 50%;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  min-width: 50%;
+  max-width: 50%;
+}
+
+.next {
+  position: relative;
+  left: 50%;
+  bottom: 50px;
+  -ms-transform: translateX(-50%) translateY(-25%);
+  -moz-transform: translateX(-50%) translateY(-25%);
+  -webkit-transform: translateX(-50%) translateY(-25%);
+  transform: translateX(-50%) translateY(-25%);
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.card-style {
+  border: 2px solid #000;
+  border-radius: 5px;
+  margin: 15px;
+}
+
+.weather-container {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 50vw;
+}
+
+.weather {
+  position: relative;
+  animation: ticker 10s linear infinite;
+}
+
+.weather:hover {
+  animation-play-state: paused;
+}
+
+@keyframes ticker {
+  0% {
+    right: -40em;
+  }
+  100% {
+    right: 55em;
+  }
+}
+
+/*
+@media only screen and (min-width: 375px) and (max-width: 666px) {
+}
+*/

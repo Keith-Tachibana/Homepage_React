@@ -24,7 +24,7 @@ app.get('/api/nasa', async (req, res, next) => {
       media: json.media_type,
       title: json.title,
       image: json.hdurl
-		});
+    });
   }
 });
 
@@ -89,7 +89,7 @@ app.get('/api/weather/:city', async (req, res, next) => {
       icon: json.weather[0].icon
     });
   } else {
-    res.status(400).send('Weather for that city not found.')
+    res.status(400).send('Weather for that city not found.');
   }
 });
 

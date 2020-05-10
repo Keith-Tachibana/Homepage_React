@@ -21,24 +21,24 @@ class Sports extends Component {
   startTimer() {
     this.timerID = setInterval(this.handleNext, 7500);
   }
-  
+
   stopTimer() {
     clearInterval(this.timerID);
   }
-  
+
   componentDidMount() {
     this.getSports();
   }
-  
+
   componentDidUpdate() {
     this.stopTimer();
     this.startTimer();
   }
-  
+
   componentWillUnmount() {
     this.stopTimer();
   }
-  
+
   handlePrevious() {
     this.setState(prevState => {
       if (prevState.sportIndex === 0) {
@@ -52,7 +52,7 @@ class Sports extends Component {
       }
     });
   }
-  
+
   handleNext() {
     this.setState(prevState => {
       if (prevState.sportIndex === this.state.sports.length - 1) {
@@ -66,13 +66,13 @@ class Sports extends Component {
       }
     });
   }
-  
+
   handleDot(event) {
     this.setState({
       sportIndex: Number(event.target.id)
-    })
+    });
   }
-  
+
   async getSports() {
     try {
       const response = await fetch('/api/sports');
@@ -90,7 +90,7 @@ class Sports extends Component {
       console.error(error.message);
     }
   }
-  
+
   renderDot() {
     return (
       <React.Fragment>
@@ -107,7 +107,7 @@ class Sports extends Component {
       </React.Fragment>
     );
   }
-  
+
   renderDate(index) {
     const { sports } = this.state;
     if (this.state.doneLoading === true) {
@@ -117,38 +117,37 @@ class Sports extends Component {
       const day = dateSplit[2].split('T')[0];
       const actualDay = day < 10 ? day.slice(1) : day;
       const year = dateSplit[0];
-      return `${actualMonth}/${actualDay}/${year}`;      
+      return `${actualMonth}/${actualDay}/${year}`;
     }
   }
-  
+
   render() {
     const cardImgStyle = {
       height: '25vh',
       objectFit: 'cover'
     };
-    const { sports, sportIndex } = this.state;    
+    const { sports, sportIndex } = this.state;
     return (this.state.doneLoading && (
       <React.Fragment>
-        <div className="carousel-sports">
+        <div className="carousel-sports" style={{ height: '500px' }}>
           <Card className="card-style">
             <CardImg top width="100%" style={cardImgStyle} src={sports[sportIndex].image} alt={sports[sportIndex].title} />
-            <CardBody style={{ maxHeight: '500px' }}>
+            <CardBody style={{ height: '300px', display: 'grid' }}>
               <CardTitle><h3>{sports[sportIndex].title}</h3></CardTitle>
-              <CardSubtitle><em>Source:</em> {sports[sportIndex].source}</CardSubtitle>
-              <CardSubtitle><em>By:</em> {sports[sportIndex].author}</CardSubtitle>
-              <CardSubtitle><em>Published On:</em> {this.renderDate(sportIndex)}</CardSubtitle>
-              <br />
+              <CardSubtitle className="text-center"><em>Source:</em> {sports[sportIndex].source}</CardSubtitle>
+              <CardSubtitle className="text-center"><em>By:</em> {sports[sportIndex].author}</CardSubtitle>
+              <CardSubtitle className="text-center"><em>Published On:</em> {this.renderDate(sportIndex)}</CardSubtitle>
               <CardText><em>{sports[sportIndex].description}</em></CardText>
-              <hr />
-              <CardText>{sports[sportIndex].content}</CardText>
-              <CardText><a href={sports[sportIndex].url} target="_blank">Click to read in full...</a></CardText>
+              <CardText style={{ alignSelf: 'end' }}><a href={sports[sportIndex].url} rel="noopener noreferrer" target="_blank">Click to read in full...</a></CardText>
             </CardBody>
-            <CardFooter style={{ minHeight: '50px', maxHeight: '50px' }}>
-              <i className="previous fas fa-chevron-left" onClick={this.handlePrevious}></i>             
-              <div className="dot">
-                <this.renderDot />
+            <CardFooter style={{ height: '50px' }}>
+              <div className="footer-wrapper">
+                <i className="previous fas fa-chevron-left" onClick={this.handlePrevious}></i>
+                <div className="dot">
+                  <this.renderDot />
+                </div>
+                <i className="next fas fa-chevron-right" onClick={this.handleNext}></i>
               </div>
-              <i className="next fas fa-chevron-right" onClick={this.handleNext}></i>                                
             </CardFooter>
           </Card>
         </div>

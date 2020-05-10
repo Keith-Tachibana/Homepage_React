@@ -10,23 +10,23 @@ class Nasa extends Component {
       nasaMedia: '',
       time: new Date().toLocaleString()
     };
-    this.timeID = null;    
+    this.timeID = null;
   }
 
   componentDidMount() {
     this.getNasa();
     this.timeID = setInterval(() => this.tick(), 1000);
-    this.getDate();    
+    this.getDate();
   }
 
   componentWillUnmount() {
     clearInterval(this.timeID);
-  }  
-  
+  }
+
   getDate() {
     const d = new Date();
     let day = d.getDay();
-    switch(day) {
+    switch (day) {
       case 0:
         day = 'Sunday';
         break;
@@ -50,7 +50,7 @@ class Nasa extends Component {
         break;
     }
     let month = d.getMonth();
-    switch(month) {
+    switch (month) {
       case 0:
         month = 'January';
         break;
@@ -107,15 +107,15 @@ class Nasa extends Component {
     const suffix = d.getHours() >= 12 ? 'PM' : 'AM';
     const currentTime = `${hours}:${minutes}:${seconds} ${suffix}`;
     return currentTime;
-  }    
+  }
   */
-  
+
   tick() {
     this.setState({
       time: new Date().toLocaleString()
     });
   }
-  
+
   async getNasa() {
     try {
       const response = await fetch('/api/nasa');
@@ -132,7 +132,7 @@ class Nasa extends Component {
       console.error(error.message);
     }
   }
-  
+
   render() {
     const nasaStyle = {
       minWidth: '100vw',
@@ -143,13 +143,13 @@ class Nasa extends Component {
     };
     return (
       <React.Fragment>
-          {this.state.nasaMedia === 'video' && (
+        {this.state.nasaMedia === 'video' && (
           <React.Fragment>
             <div className="w-100">
               <span className="text-white bg-dark d-inline">
-                <span>NASA Video of the Day: "{this.state.nasaTitle}"</span>
+                <span>NASA Video of the Day: {this.state.nasaTitle}</span>
                 <span className="text-center">{this.getDate()}</span>
-                <span className="text-center">{this.state.time}</span>              
+                <span className="text-center">{this.state.time}</span>
               </span>
             </div>
             <header>
@@ -159,18 +159,18 @@ class Nasa extends Component {
                 <div className="d-flex h-100 text-center align-items-center">
                 </div>
               </div>
-             </header>
+            </header>
           </React.Fragment>
-          )}
-          {this.state.nasaMedia === 'image' && (
+        )}
+        {this.state.nasaMedia === 'image' && (
           <div style={nasaStyle}>
             <span className="text-white bg-dark d-inline">
-              <span>NASA Pic of the Day: "{this.state.nasaTitle}"</span>
+              <span>NASA Pic of the Day: {this.state.nasaTitle}</span>
               <span className="text-center">{this.getDate()}</span>
               <span className="text-center">{this.state.time}</span>
             </span>
           </div>
-          )}
+        )}
       </React.Fragment>
     );
   }

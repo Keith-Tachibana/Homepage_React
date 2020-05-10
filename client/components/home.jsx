@@ -8,9 +8,13 @@ class Home extends Component {
     return (
       <React.Fragment>
         <main className="container-fluid">
-          <div className="grid-container">
-            <Headlines />
-            <Sports />            
+          <div className="row">
+            <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+              <Headlines />
+            </div>
+            <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+              <Sports />
+            </div>
           </div>
         </main>
       </React.Fragment>

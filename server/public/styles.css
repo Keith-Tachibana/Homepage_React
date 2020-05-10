@@ -46,77 +46,33 @@ header .overlay {
   z-index: 1;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 1rem;
-}
-
-.carousel-headlines {
-  display: flex;
-  text-align: center;
-  width: calc(45% - 50px);
-  grid-column-start: 1;
-  grid-column-end: span col4-start;
-  grid-row: 1 / row4-start;
-  max-height: 800px;
-  min-height: 800px;
-}
-
-.carousel-sports {
-  display: flex;
-  text-align: center;
-  width: calc(80% - 50px);
-  grid-column: 6 / last-line;
-  justify-self: end;
-  grid-row: 1 / row4-start;
-  max-height: 800px;
-  min-height: 800px;
-}
-
-.previous {
-  position: relative;
-  right: 49%;
-  top: 5px;
-  -ms-transform: translateX(-50%) translateY(-25%);
-  -moz-transform: translateX(-50%) translateY(-25%);
-  -webkit-transform: translateX(-50%) translateY(-25%);
-  transform: translateX(-50%) translateY(-25%);
-  cursor: pointer;
-  font-size: 2rem;
-}
-
-.dot {
-  font-size: 1rem;
-  cursor: pointer;
-  position: relative;
-  left: 50%;
-  bottom: 50%;
-  -ms-transform: translateX(-50%) translateY(-50%);
-  -moz-transform: translateX(-50%) translateY(-50%);
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-  min-width: 50%;
-  max-width: 50%;
-}
-
-.next {
-  position: relative;
-  left: 50%;
-  bottom: 50px;
-  -ms-transform: translateX(-50%) translateY(-25%);
-  -moz-transform: translateX(-50%) translateY(-25%);
-  -webkit-transform: translateX(-50%) translateY(-25%);
-  transform: translateX(-50%) translateY(-25%);
-  cursor: pointer;
-  font-size: 2rem;
-}
-
 .card-style {
   border: 2px solid #000;
   border-radius: 5px;
   margin: 15px;
+}
+
+.dot {
+  display: flex;
+  justify-content: center;
+}
+
+.dot > * {
+  position: relative;
+  bottom: 15px;
+}
+
+.dot > *:hover,
+.next:hover,
+.previous:hover {
+  cursor: pointer;
+}
+
+.next {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  bottom: 35px;  
 }
 
 .weather-container {
